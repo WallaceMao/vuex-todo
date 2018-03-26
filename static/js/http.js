@@ -77,6 +77,10 @@
     }
   }
 
+  /**
+   * window.respAPI对象，用来模拟ajax请求
+   * @type {{get: Window.restApi.get, post: Window.restApi.post, delete: Window.restApi.delete, put: Window.restApi.put}}
+   */
   window.restApi = {
     get: function(path, callback, error){
       checkCallback(callback, error)
