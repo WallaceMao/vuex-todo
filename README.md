@@ -2,7 +2,7 @@
 
 > 基于vuex的todoMVC demo项目
 
-## Build Setup
+## Run Project in DEV Mode
 
 ``` bash
 # install dependencies
@@ -10,12 +10,6 @@ npm install
 
 # serve with hot reload at localhost:8080
 npm run dev
-
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
 ```
 
 ## Basic Structure
@@ -134,3 +128,6 @@ path: `src/components/TodoItem.vue`
     }, err => {
       console.error('toggleTodo error: %o', err)
     })
+
+## 面试说明
+参照[INTERVIEW.md](https://github.com/WallaceMao/vuex-todo/blob/master/INTERVIEW.md)
