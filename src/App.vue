@@ -3,7 +3,8 @@
     <section class="todoapp">
       <header class="header">
         <h1>todos</h1>
-        <input class="new-todo" autofocus autocomplete="off" placeholder="What needs to be done?" v-model="newTodo" @keyup.enter="addTodo">
+        <!--TODO  在此元素上绑定回车(Enter)键事件，调用addTodo方法-->
+        <input class="new-todo" autofocus autocomplete="off" placeholder="What needs to be done?" v-model="newTodo">
       </header>
       <todo-panel />
       <footer class="footer" v-show="allTodo.length">
@@ -56,18 +57,14 @@ export default {
   },
   methods: {
     addTodo () {
-      const value = this.newTodo && this.newTodo.trim()
-      if (!value) {
-        return
-      }
-      this.$store.dispatch('addTodo', value)
-      this.newTodo = ''
+      //  TODO  在这里调用action中的addTodo方法，实现新增todo的功能
+
     },
     removeCompleted () {
-      this.$store.dispatch('removeCompletedTodos')
+      //  TODO  移除所有已完成的todo
     },
     filterTodos (type) {
-      this.$store.dispatch('filterTodos', type)
+      //  TODO 设置todo的可见性
     },
     pluralize (word, count) {
       return word + (count === 1 ? '' : 's')

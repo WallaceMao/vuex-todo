@@ -1,11 +1,13 @@
 <template>
   <li class="todo">
     <div class="view">
-      <input class="toggle" type="checkbox" v-model="todo.completed" @click="completeTodo">
-      <label @dblclick="editTodo">{{todo.title}}</label>
-      <button class="destroy" @click="removeTodo"></button>
+      <input class="toggle" type="checkbox" v-model="todo.completed">
+      <!--TODO  双击此元素，该todo进入编辑状态，显示下方的input.edit元素-->
+      <label>{{todo.title}}</label>
+      <!--TODO  点击此元素，删除该todo-->
+      <button class="destroy"></button>
     </div>
-    <input ref="inputEdit" class="edit" type="text" v-model="todoTitle" @blur="doneEdit" @keyup.enter="blurEdit" @keyup.esc="cancelEdit">
+    <input ref="inputEdit" class="edit" type="text" v-model="todoTitle">
   </li>
 </template>
 
@@ -21,30 +23,6 @@ export default {
     todo: Object
   },
   methods: {
-    editTodo () {
-      this.todoTitle = this.todo.title
-      this.$emit('todo-edit-set', this.todo)
-      this.$nextTick(() => {
-        this.$refs.inputEdit.focus()
-      })
-    },
-    removeTodo () {
-      this.$store.dispatch('removeTodo', this.todo.id)
-    },
-    completeTodo () {
-      this.$store.dispatch('toggleTodo', {id: this.todo.id, status: !this.todo.completed})
-    },
-    blurEdit () {
-      this.$refs.inputEdit.blur()
-    },
-    doneEdit () {
-      this.$store.dispatch('updateTodo', {id: this.todo.id, props: {title: this.todoTitle}})
-      this.todoTitle = ''
-      this.$emit('todo-edit-reset')
-    },
-    cancelEdit () {
-      this.$emit('todo-edit-reset')
-    }
   }
 }
 </script>
