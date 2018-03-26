@@ -130,4 +130,6 @@ path: `src/components/TodoItem.vue`
     })
 
 ## 面试说明
+项目效果[todoMVC for Vue](http://todomvc.com/examples/vue/)
 参照[INTERVIEW.md](https://github.com/WallaceMao/vuex-todo/blob/master/INTERVIEW.md)
+
