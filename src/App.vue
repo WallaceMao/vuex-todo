@@ -4,7 +4,7 @@
       <header class="header">
         <h1>todos</h1>
         <!--TODO  在此元素上绑定回车(Enter)键事件，调用addTodo方法-->
-        <input class="new-todo" autofocus autocomplete="off" placeholder="What needs to be done?" v-model="newTodo">
+        <input class="new-todo" autofocus autocomplete="off" placeholder="What needs to be done?" v-model="newTodo" @keyup.enter="handleKey">
       </header>
       <todo-panel />
       <footer class="footer" v-show="allTodo.length">
@@ -29,6 +29,7 @@
 
 <script>
 import TodoPanel from './components/TodoPanel'
+import {mapActions} from 'vuex'
 
 export default {
   name: 'App',
@@ -42,6 +43,7 @@ export default {
       return this.$store.getters.currentTodos
     },
     allTodo () {
+      console.log(this.$store.getters.allTodos)
       return this.$store.getters.allTodos
     },
     remaining () {
@@ -56,9 +58,11 @@ export default {
     'todo-panel': TodoPanel
   },
   methods: {
-    addTodo () {
+    handleKey () {
       //  TODO  在这里调用action中的addTodo方法，实现新增todo的功能
-
+      if (!this.newTodo) return
+      this.addTodo(this.newTodo)
+      this.newTodo = ''
     },
     removeCompleted () {
       //  TODO  移除所有已完成的todo
@@ -68,7 +72,8 @@ export default {
     },
     pluralize (word, count) {
       return word + (count === 1 ? '' : 's')
-    }
+    },
+    ...mapActions(['addTodo'])
   },
   mounted () {
     this.$store.dispatch('getTodos')

@@ -64,5 +64,12 @@ export default {
    */
   filterTodos ({ state, commit }, type) {
     commit('SET_VISIBILITY', type)
+  },
+  deleteTodos ({state, commit}, {title, id}) {
+    window.restApi.delete(`/todo/${id}`, res => {
+      commit('DELETE_TODO', title)
+    }, err => {
+      console.error('deleteTodos error: %o', err)
+    })
   }
 }

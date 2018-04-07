@@ -39,5 +39,11 @@ export default {
    */
   SET_VISIBILITY (state, type) {
     state.visibility = type
+  },
+  DELETE_TODO (state, title) {
+    let arr = state.todos.slice()
+    let index = arr.findIndex(item => item.title === title)
+    arr.splice(index, 1)
+    state.todos = arr
   }
 }
