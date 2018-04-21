@@ -20,7 +20,7 @@ export default {
   addTodo ({ state, commit }, title) {
     const obj = {
       title: title,
-      completed: false
+      completed: false,
     }
     window.restApi.post('/todo', obj, res => {
       commit('ADD_TODO', res)
@@ -28,6 +28,7 @@ export default {
       console.error('addTodo error: %o', err)
     })
   },
+
   /**
    * 切换所有的todo的completed字段
    * @param state
@@ -64,5 +65,31 @@ export default {
    */
   filterTodos ({ state, commit }, type) {
     commit('SET_VISIBILITY', type)
+  },
+  /*删除*/
+  removeTodo({ state, commit }, id){
+    window.restApi.delete('/todo/'+id, res => {
+      //TODO  删除成功
+      console.log(id);
+      commit('REMOVE_TODO',res)
+    }, err => {
+      console.error('removeTodo error: %o', err)
+    })
   }
+
+
+  /*
+  *   addTodo ({ state, commit }, title) {
+    const obj = {
+      title: title,
+      completed: false,
+    }
+    window.restApi.post('/todo', obj, res => {
+      commit('ADD_TODO', res)
+    }, err => {
+      console.error('addTodo error: %o', err)
+    })
+  },
+  *
+  * */
 }

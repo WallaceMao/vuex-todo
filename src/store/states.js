@@ -8,6 +8,7 @@ export default {
    * }
    */
   todos: [],
+  title:'hi',
   /**
    * all/active/completed
    */

@@ -1,11 +1,12 @@
 <template>
   <section class="main" v-show="todos.length">
     <input class="toggle-all" type="checkbox" v-model="allDone">
-    <ul class="todo-list">
+    <ul class="todo-list" >
       <todo-item class="todo"
-          v-for="todo in todos"
+          v-for="(todo,index) in todos"
           :key="todo.id"
           :todo="todo"
+          :index="index"
           :class="{completed: todo.completed, editing: todo === editedTodo}"
           @todo-edit-set="setEditedTodo"
           @todo-edit-reset="resetEditedTodo">
@@ -26,6 +27,7 @@ export default {
   },
   computed: {
     todos () {
+
       return this.$store.getters.currentTodos
     },
     remaining () {

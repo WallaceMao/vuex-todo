@@ -18,7 +18,17 @@ export default {
    * @constructor
    */
   ADD_TODO (state, todo) {
-    state.todos.push(todo)
+    state.todos.push(todo);
+  },
+  /**
+   * 删除TODO
+   * @param state
+   * @param todo
+   * @constructor
+   */
+  REMOVE_TODO (state, todo) {
+    console.log(todo);
+    // state.todos.splice(todo.id,1);
   },
   /**
    * 切换所有todo的complete值

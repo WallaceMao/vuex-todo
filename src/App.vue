@@ -4,9 +4,12 @@
       <header class="header">
         <h1>todos</h1>
         <!--TODO  在此元素上绑定回车(Enter)键事件，调用addTodo方法-->
-        <input class="new-todo" autofocus autocomplete="off" placeholder="What needs to be done?" v-model="newTodo">
+        <input class="new-todo" autofocus autocomplete="off" placeholder="What needs to be done?" v-model.trim="newTodo" @keyup.enter="addTodo">
+
       </header>
       <todo-panel />
+
+
       <footer class="footer" v-show="allTodo.length">
         <span class="todo-count">
           <strong v-text="remaining"></strong> {{pluralize('item', remaining)}} left
@@ -58,7 +61,11 @@ export default {
   methods: {
     addTodo () {
       //  TODO  在这里调用action中的addTodo方法，实现新增todo的功能
-
+      if(!this.newTodo){
+        return ;
+      }
+      this.$store.dispatch("addTodo",this.newTodo);
+      this.newTodo='';
     },
     removeCompleted () {
       //  TODO  移除所有已完成的todo
