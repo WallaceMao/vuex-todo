@@ -52,7 +52,6 @@ export default {
     }
   },
   components: {
-    TodoPanel,
     'todo-panel': TodoPanel
   },
   methods: {
